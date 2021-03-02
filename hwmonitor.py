@@ -60,38 +60,46 @@ font_icon = ImageFont.truetype('fontawesome-webfont.ttf', 20)
 font_icon1 = ImageFont.truetype('fa-solid-900.ttf', 36)
 font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
-# https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
+while True:
+    # Draw a black filled box to clear the image.
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
 
-cmd = "hostname -I | cut -f 2 -d '='"
-IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
-cmd = "top -bn1 | grep load | awk '{printf \"CPU:%.2f\", $(NF-2)}'"
-CPU = subprocess.check_output(cmd, shell=True).decode("utf-8")
-cmd = "vcgencmd measure_temp |cut -f 2 -d '='"
-Temp = subprocess.check_output(cmd, shell=True).decode("utf-8")
-cmd = "free -m | awk 'NR==2{printf \"Mem:%.2f%%\", $3*100/$2 }'"
-MemUsage = subprocess.check_output(cmd, shell=True).decode("utf-8")
-cmd = 'df -h | awk \'$NF=="/"{printf "HHD:%d/%d GB ", $3,$2,$5}\''
-Disk = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    # https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
 
-# Write four lines of text
-# Text IP address
-draw.text((x, top), "pi@" + str(IP), font=font, fill=255)
-# Text Temperatura CPU
-draw.text((x+79, top+15), str(Temp), font=font1, fill=255)
-# Text CPU
-draw.text((x, top+8), str(CPU), font=font, fill=255)
-# Text HHD usato/totale
-draw.text((x, top+16), str(Disk), font=font, fill=255)
-# Text Memoria in uso
-draw.text((x, top+24), str(MemUsage), font=font, fill=255)
+    cmd = "hostname -I | cut -f 2 -d '='"
+    IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    #
+    cmd = "top -bn1 | grep load | awk '{printf \"CPU:%.2f\", $(NF-2)}'"
+    CPU = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    #
+    cmd = "vcgencmd measure_temp |cut -f 2 -d '='"
+    Temp = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    #
+    cmd = "free -m | awk 'NR==2{printf \"Mem:%.2f%%\", $3*100/$2 }'"
+    MemUsage = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    #
+    cmd = 'df -h | awk \'$NF=="/"{printf "HHD:%d/%d GB ", $3,$2,$5}\''
+    Disk = subprocess.check_output(cmd, shell=True).decode("utf-8")
 
-# Icon
-# Icon Temp
-draw.text((x+65, top+13), chr(62152), font=font_icon, fill=255)
-# Icon FAN
-#draw.text((x+65, top+13), chr(63587), font=font_icon, fill=255)
+    # Write four lines of text
+    # Text IP address
+    draw.text((x, top), "pi@" + str(IP), font=font, fill=255)
+    # Text Temperatura CPU
+    draw.text((x+79, top+15), str(Temp), font=font1, fill=255)
+    # Text CPU
+    draw.text((x, top+8), str(CPU), font=font, fill=255)
+    # Text HHD usato/totale
+    draw.text((x, top+16), str(Disk), font=font, fill=255)
+    # Text Memoria in uso
+    draw.text((x, top+24), str(MemUsage), font=font, fill=255)
 
-# Display image
-disp.image(image)
-disp.show()
-time.sleep(0.1)
+    # Icon
+    # Icon Temp (63339)
+    draw.text((x+65, top+13), chr(62152), font=font_icon, fill=255)
+    # Icon FAN
+    #draw.text((x+65, top+13), chr(63587), font=font_icon, fill=255)
+
+    # Display image
+    disp.image(image)
+    disp.show()
+    time.sleep(0.1)
