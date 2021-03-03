@@ -54,10 +54,8 @@ font = ImageFont.load_default()
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
-#font2 = ImageFont.truetype('fontawesome-webfont.ttf', 14)
 # Some other nice Icon to : https://fontawesome.com/
-font_icon = ImageFont.truetype('fontawesome-webfont.ttf', 20)
-font_icon1 = ImageFont.truetype('fa-solid-900.ttf', 36)
+font_icon = ImageFont.truetype('fa-solid-900.ttf', 20)
 font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
 while True:
@@ -69,23 +67,23 @@ while True:
     cmd = "hostname -I | cut -f 2 -d '='"
     IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
     #
-    cmd = "top -bn1 | grep load | awk '{printf \"CPU:%.2f\", $(NF-2)}'"
+    cmd = "top -bn1 | grep load | awk '{printf \"CPU: %.2f\", $(NF-2)}'"
     CPU = subprocess.check_output(cmd, shell=True).decode("utf-8")
     #
     cmd = "vcgencmd measure_temp |cut -f 2 -d '='"
     Temp = subprocess.check_output(cmd, shell=True).decode("utf-8")
     #
-    cmd = "free -m | awk 'NR==2{printf \"Mem:%.2f%%\", $3*100/$2 }'"
+    cmd = "free -m | awk 'NR==2{printf \"Mem: %.2f%%\", $3*100/$2 }'"
     MemUsage = subprocess.check_output(cmd, shell=True).decode("utf-8")
     #
-    cmd = 'df -h | awk \'$NF=="/"{printf "HHD:%d/%d GB ", $3,$2,$5}\''
+    cmd = 'df -h | awk \'$NF=="/"{printf "HHD: %d/%d GB ", $3,$2,$5}\''
     Disk = subprocess.check_output(cmd, shell=True).decode("utf-8")
 
     # Write four lines of text
     # Text IP address
     draw.text((x, top), "pi@" + str(IP), font=font, fill=255)
     # Text Temperatura CPU
-    draw.text((x+79, top+15), str(Temp), font=font1, fill=255)
+    draw.text((x+89, top+15), str(Temp), font=font1, fill=255)
     # Text CPU
     draw.text((x, top+8), str(CPU), font=font, fill=255)
     # Text HHD usato/totale
@@ -94,10 +92,10 @@ while True:
     draw.text((x, top+24), str(MemUsage), font=font, fill=255)
 
     # Icon
-    # Icon Temp (63339)
-    draw.text((x+65, top+13), chr(62152), font=font_icon, fill=255)
-    # Icon FAN
-    #draw.text((x+65, top+13), chr(63587), font=font_icon, fill=255)
+    # Icon Temp (62153)
+    draw.text((x+70, top+13), chr(62153), font=font_icon, fill=255)
+    # Icon FAN (63587)
+    #draw.text((x+67, top+13), chr(63587), font=font_icon, fill=255)
 
     # Display image
     disp.image(image)
