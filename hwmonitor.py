@@ -76,7 +76,7 @@ while True:
     cmd = "free -m | awk 'NR==2{printf \"Mem: %.2f%%\", $3*100/$2 }'"
     MemUsage = subprocess.check_output(cmd, shell=True).decode("utf-8")
     #
-    cmd = 'df -h | awk \'$NF=="/"{printf "HHD: %d/%d GB ", $3,$2,$5}\''
+    cmd = 'df -h | awk \'$NF=="/"{printf "HDD: %d/%d GB ", $3,$2,$5}\''
     Disk = subprocess.check_output(cmd, shell=True).decode("utf-8")
 
     # Write four lines of text
@@ -93,7 +93,7 @@ while True:
 
     # Icon
     # Icon Temp (62153)
-    draw.text((x+70, top+13), chr(62153), font=font_icon, fill=255)
+    draw.text((x+73, top+13), chr(62153), font=font_icon, fill=255)
     # Icon FAN (63587)
     #draw.text((x+67, top+13), chr(63587), font=font_icon, fill=255)
 
