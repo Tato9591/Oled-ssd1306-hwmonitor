@@ -58,15 +58,17 @@ sudo i2cdetect -y 1
 
 <img src="https://www.schenardi.it/public\RPi4-NAS\images\i2c.PNG" alt="i2c" style="zoom:50%;" />
 
-Accelerare la visualizzazione Per ottenere migliori prestazioni, eseguire questa modifica di configurazione con: 
+###### Accelerare la visualizzazione 
+
+Per ottenere migliori prestazioni, eseguire questa modifica di configurazione con: 
 
 ```
 sudo nano /boot/config.txt
 ```
 
- e aggiungere alla voce presente che trovi **,i2c_baudrate=400000**
+ e aggiungere alla voce presente che trovi **,i2c_baudrate=800000**
 
->  dtparam=i2c_arm=on,i2c_baudrate=400000 
+>  dtparam=i2c_arm=on,i2c_baudrate=800000 
 
 Usare **CTRL+O** per salvare, **Invio** e quindi **CTRL+X** per uscire .
 
