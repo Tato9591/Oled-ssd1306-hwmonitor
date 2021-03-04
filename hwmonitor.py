@@ -86,7 +86,7 @@ while True:
     draw.text((x+89, top+15), str(Temp), font=font1, fill=255)
     # Text CPU
     draw.text((x, top+8), str(CPU), font=font, fill=255)
-    # Text HHD usato/totale
+    # Text HDD usato/totale
     draw.text((x, top+16), str(Disk), font=font, fill=255)
     # Text Memoria in uso
     draw.text((x, top+24), str(MemUsage), font=font, fill=255)
