@@ -99,5 +99,9 @@ python3 hwmonitor.py
 e dovresti vedere qualcosa come la seguente immagine:
 
 
-
 <img src="https://www.schenardi.it/public\RPi4-NAS\images\hwmonitor.jpg" alt="hwmonitor" style="zoom: 25%;" />
+
+Per attivazione controllo automatico della temperatura con ventola, leggere nel file **hwmonitor.py**.
+
+<img src="https://www.schenardi.it/public\RPi4-NAS\images\Schematic_RPi4-FAN_2021-02-22.png" alt="GPIO-Fan" style="zoom: 80%;" />
+

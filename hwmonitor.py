@@ -8,13 +8,33 @@
 
 import time
 import subprocess
-
+import RPi.GPIO as GPIO
 from board import SCL, SDA
 import busio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
 
-
+# use Pi header pin numbering convention
+#|-----------Attivazione controllo automatico temparatura con ventola----------|
+#|-----------------------------------------------------------------------------|
+#|sudo raspi-config                                                            |
+#|-----------------------------------------------------------------------------|
+#|4 Performance Options                                                        |
+#|- P4 Fan (yes, 14, ok, 80, ok, ok) Set the behaviour of a GPIO connected fan |
+#|                                                                             |
+#|Finish                                                                       |
+#|-----------------------------------------------------------------------------|
+#|digitare:                                                                    |
+#|sudo nano /boot/config.txt                                                   |
+#|modificare il valore temp=80000 in (temp=45000) o a piacere.                              |
+#|> [all]                                                                      |
+#|> dtoverlay=gpio-fan,gpiopin=14,temp=45000                                   |
+#|                                                                             |
+#|Sfruttando il **GPIO-Fan**; si spegne la ventola quando raggiunge 10° in meno|
+#|del valore che abbiamo stabilito per attivarla in **config.txt**.            |
+#|-----------------------------------------------------------------------------|
+# Fan Set the behaviour of a GPIO connected fan
+GPIO.setup(14, GPIO.OUT)
 # Create the I2C interface.
 i2c = busio.I2C(SCL, SDA)
 
@@ -55,7 +75,8 @@ font = ImageFont.load_default()
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
 # Some other nice Icon to : https://fontawesome.com/
-font_icon = ImageFont.truetype('fa-solid-900.ttf', 20)
+font_icon = ImageFont.truetype('fa-solid-900.ttf', 18)
+font_icon2 = ImageFont.truetype('fa-solid-900.ttf', 20)
 font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
 while True:
@@ -82,20 +103,21 @@ while True:
     # Write four lines of text
     # Text IP address
     draw.text((x, top), "pi@" + str(IP), font=font, fill=255)
-    # Text Temperatura CPU
-    draw.text((x+89, top+15), str(Temp), font=font1, fill=255)
+    # Text Temperature CPU
+    draw.text((x+92, top+15), str(Temp), font=font1, fill=255)
     # Text CPU
     draw.text((x, top+8), str(CPU), font=font, fill=255)
-    # Text HDD usato/totale
+    # Text HDD used/total
     draw.text((x, top+16), str(Disk), font=font, fill=255)
-    # Text Memoria in uso
+    # Text Memory in use
     draw.text((x, top+24), str(MemUsage), font=font, fill=255)
-
     # Icon
-    # Icon Temp (62153)
-    draw.text((x+73, top+13), chr(62153), font=font_icon, fill=255)
-    # Icon FAN (63587)
-    #draw.text((x+67, top+13), chr(63587), font=font_icon, fill=255)
+    if GPIO.input(14) == True: # pin state control = ON
+        # Icon FAN (63587) ignition confirmation
+        draw.text((x+71, top+13), chr(63587), font=font_icon, fill=255)
+    if GPIO.input(14) == False: # pin state control = OFF
+        # Icon Temp (62153) temperature state is OK
+        draw.text((x+79, top+13), chr(62153), font=font_icon2, fill=255)
 
     # Display image
     disp.image(image)
