@@ -106,11 +106,11 @@ while True:
     # Text Temperature CPU
     draw.text((x+92, top+15), str(Temp), font=font1, fill=255)
     # Text CPU
-    draw.text((x, top+8), str(CPU), font=font, fill=255)
+    draw.text((x, top+9), str(CPU), font=font, fill=255)
     # Text HDD used/total
-    draw.text((x, top+16), str(Disk), font=font, fill=255)
+    draw.text((x, top+17), str(Disk), font=font, fill=255)
     # Text Memory in use
-    draw.text((x, top+24), str(MemUsage), font=font, fill=255)
+    draw.text((x, top+25), str(MemUsage), font=font, fill=255)
     # Icon
     if GPIO.input(14) == True: # pin state control = ON
         # Icon FAN (63587) ignition confirmation
