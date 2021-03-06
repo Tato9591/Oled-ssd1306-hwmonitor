@@ -35,6 +35,7 @@ import adafruit_ssd1306
 #|-----------------------------------------------------------------------------|
 # Fan Set the behaviour of a GPIO connected fan
 GPIO.setup(14, GPIO.OUT)
+
 # Create the I2C interface.
 i2c = busio.I2C(SCL, SDA)
 
