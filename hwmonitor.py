@@ -101,7 +101,7 @@ while True:
     # Text IP address
     draw.text((x, top), "pi@" + str(IP), font=font, fill=255)
     # Text Temperature CPU
-    draw.text((x+92, top+15), str(Temp), font=font1, fill=255)
+    draw.text((x+92, top+13), str(Temp), font=font1, fill=255)
     # Text CPU
     draw.text((x, top+9), str(CPU), font=font, fill=255)
     # Text HDD used/total
