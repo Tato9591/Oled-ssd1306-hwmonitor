@@ -10,6 +10,9 @@ import busio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
 # use Pi header pin numbering convention
 #|-----------Attivazione controllo automatico temparatura con ventola----------|
 #|-----------------------------------------------------------------------------|
