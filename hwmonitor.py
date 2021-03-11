@@ -72,7 +72,7 @@ font = ImageFont.load_default()
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
 # Some other nice Icon to : https://fontawesome.com/
-font_icon = ImageFont.truetype('fa-solid-900.ttf', 18)
+font_icon = ImageFont.truetype('fa-solid-900.ttf', 17)
 font_icon2 = ImageFont.truetype('fa-solid-900.ttf', 20)
 # font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
@@ -111,7 +111,7 @@ while True:
     # Icon
     if GPIO.input(14) == True: # pin state control = ON
         # Icon FAN (63587) ignition confirmation
-        draw.text((x+71, top+13), chr(63587), font=font_icon, fill=255)
+        draw.text((x+73, top+13), chr(63587), font=font_icon, fill=255)
     if GPIO.input(14) == False: # pin state control = OFF
         # Icon Temp (62153) temperature state is OK
         draw.text((x+79, top+13), chr(62153), font=font_icon2, fill=255)
