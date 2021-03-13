@@ -25,9 +25,9 @@ GPIO.setwarnings(False)
 #|-----------------------------------------------------------------------------|
 #|digitare:                                                                    |
 #|sudo nano /boot/config.txt                                                   |
-#|modificare il valore temp=80000 in (temp=45000) o a piacere.                              |
+#|modificare il valore temp=80000 in (temp=46000) o a piacere.                              |
 #|> [all]                                                                      |
-#|> dtoverlay=gpio-fan,gpiopin=14,temp=45000                                   |
+#|> dtoverlay=gpio-fan,gpiopin=14,temp=46000                                   |
 #|                                                                             |
 #|Sfruttando il **GPIO-Fan**; si spegne la ventola quando raggiunge 10° in meno|
 #|del valore che abbiamo stabilito per attivarla in **config.txt**.            |
