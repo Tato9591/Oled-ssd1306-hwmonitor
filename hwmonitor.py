@@ -2,9 +2,14 @@
 # SPDX-FileCopyrightText: 2017 James DeVito for Adafruit Industries
 # SPDX-License-Identifier: MIT
 
+# This example is for use on (Linux) computers that are using CPython with
+# Adafruit Blinka to support CircuitPython libraries. CircuitPython does
+# not support PIL/pillow (python imaging library)!
+
 import time
 import subprocess
 import RPi.GPIO as GPIO
+import board
 from board import SCL, SDA
 import busio
 from PIL import Image, ImageDraw, ImageFont
@@ -34,7 +39,6 @@ GPIO.setwarnings(False)
 #|-----------------------------------------------------------------------------|
 # Fan Set the behaviour of a GPIO connected fan
 GPIO.setup(14, GPIO.OUT)
-
 # Create the I2C interface.
 i2c = busio.I2C(SCL, SDA)
 
@@ -75,9 +79,9 @@ font = ImageFont.load_default()
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
 # Some other nice Icon to : https://fontawesome.com/
-font_icon = ImageFont.truetype('fa-solid-900.ttf', 17)
+font_icon = ImageFont.truetype('fa-solid-900.ttf', 18)
 font_icon2 = ImageFont.truetype('fa-solid-900.ttf', 20)
-# font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
+font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
 while True:
     # Draw a black filled box to clear the image.
@@ -114,7 +118,7 @@ while True:
     # Icon
     if GPIO.input(14) == True: # pin state control = ON
         # Icon FAN (63587) ignition confirmation
-        draw.text((x+73, top+13), chr(63587), font=font_icon, fill=255)
+        draw.text((x+71, top+13), chr(63587), font=font_icon, fill=255)
     if GPIO.input(14) == False: # pin state control = OFF
         # Icon Temp (62153) temperature state is OK
         draw.text((x+79, top+13), chr(62153), font=font_icon2, fill=255)
