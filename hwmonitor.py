@@ -5,7 +5,8 @@
 # This example is for use on (Linux) computers that are using CPython with
 # Adafruit Blinka to support CircuitPython libraries. CircuitPython does
 # not support PIL/pillow (python imaging library)!
-import vcgencmd
+from vcgencmd import Vcgencmd
+#Per documentazione vedi https://pypi.org/project/vcgencmd/
 import time
 import subprocess
 import RPi.GPIO as GPIO
@@ -14,6 +15,8 @@ from board import SCL, SDA
 import busio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
+
+vcgm = Vcgencmd()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -81,7 +84,7 @@ font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
 # Some other nice Icon to : https://fontawesome.com/
 font_icon = ImageFont.truetype('fa-solid-900.ttf', 18)
 font_icon2 = ImageFont.truetype('fa-solid-900.ttf', 20)
-font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
+#font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
 while True:
     # Draw a black filled box to clear the image.
@@ -95,7 +98,7 @@ while True:
     cmd = "top -bn1 | grep load | awk '{printf \"CPU: %.2f\", $(NF-2)}'"
     CPU = subprocess.check_output(cmd, shell=True).decode("utf-8")
     #
-    Temp = vcgencmd.measure_temp()
+    Temp = vcgm.measure_temp()
     #
     cmd = "free -m | awk 'NR==2{printf \"Mem: %.2f%%\", $3*100/$2 }'"
     MemUsage = subprocess.check_output(cmd, shell=True).decode("utf-8")
