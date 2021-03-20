@@ -18,6 +18,10 @@ import adafruit_ssd1306
 
 vcgm = Vcgencmd()
 
+def get_temp():
+    temp = vcgm.measure_temp()                   
+    return(temp)
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -94,15 +98,15 @@ while True:
     # Controllo funzionamento ventola
     Temp = get_temp()
     if Temp >= 70: # Probabilmente la ventola è fuori uso.
-	draw.text((x, top+6), "Shutdown", font=font1, fill=255)
-	draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
+        draw.text((x, top+6), "Shutdown", font=font1, fill=255)
+        draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
 	# Icon RPi (63419)
-	draw.text((x+85, top+8), chr(63419), font=font_icon3, fill=255)
+        draw.text((x+85, top+8), chr(63419), font=font_icon3, fill=255)
         # Display image
         disp.image(image)
         disp.show()
         time.sleep(3)
-	os.system("sudo shutdown -h now")
+        os.system("sudo shutdown -h now")
 
     # https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
 
