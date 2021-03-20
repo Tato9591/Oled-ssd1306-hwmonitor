@@ -84,6 +84,7 @@ font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
 # Some other nice Icon to : https://fontawesome.com/
 font_icon = ImageFont.truetype('fa-solid-900.ttf', 18)
 font_icon2 = ImageFont.truetype('fa-solid-900.ttf', 20)
+font_icon3 = ImageFont.truetype('fa-brands-400.ttf', 20)
 #font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
 while True:
