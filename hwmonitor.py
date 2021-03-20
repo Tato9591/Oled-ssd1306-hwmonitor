@@ -18,10 +18,6 @@ import adafruit_ssd1306
 
 vcgm = Vcgencmd()
 
-def get_temp():
-    temp = vcgm.measure_temp()                   
-    return(temp)
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -98,15 +94,15 @@ while True:
     # Controllo funzionamento ventola
     Temp = get_temp()
     if Temp >= 70: # Probabilmente la ventola è fuori uso.
-        draw.text((x, top+6), "Shutdown", font=font1, fill=255)
-        draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
+	draw.text((x, top+6), "Shutdown", font=font1, fill=255)
+	draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
 	# Icon RPi (63419)
-        draw.text((x+85, top+8), chr(63419), font=font_icon3, fill=255)
+	draw.text((x+85, top+8), chr(63419), font=font_icon3, fill=255)
         # Display image
         disp.image(image)
         disp.show()
         time.sleep(3)
-        os.system("sudo shutdown -h now")
+	os.system("sudo shutdown -h now")
 
     # https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
 
@@ -128,7 +124,7 @@ while True:
     # Text IP address
     draw.text((x, top), "pi@" + str(IP), font=font, fill=255)
     # Text Temperature CPU
-    draw.text((x+92, top+12), str(Temp) + "°", font=font1, fill=255)
+    draw.text((x+99, top+13), str(Temp) + "°", font=font1, fill=255)
     # Text CPU
     draw.text((x, top+9), str(CPU), font=font, fill=255)
     # Text HDD used/total
@@ -141,7 +137,7 @@ while True:
         draw.text((x+71, top+13), chr(63587), font=font_icon, fill=255)
     if GPIO.input(14) == False: # pin state control = OFF
         # Icon Temp (62154) temperature state is OK
-        draw.text((x+79, top+13), chr(62154), font=font_icon2, fill=255)
+        draw.text((x+85, top+13), chr(62154), font=font_icon2, fill=255)
 
     # Display image
     disp.image(image)
