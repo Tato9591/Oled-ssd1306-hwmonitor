@@ -5,7 +5,7 @@
 # This example is for use on (Linux) computers that are using CPython with
 # Adafruit Blinka to support CircuitPython libraries. CircuitPython does
 # not support PIL/pillow (python imaging library)!
-
+import vcgencmd
 import time
 import subprocess
 import RPi.GPIO as GPIO
@@ -95,8 +95,7 @@ while True:
     cmd = "top -bn1 | grep load | awk '{printf \"CPU: %.2f\", $(NF-2)}'"
     CPU = subprocess.check_output(cmd, shell=True).decode("utf-8")
     #
-    cmd = "vcgencmd measure_temp |cut -f 2 -d '='"
-    Temp = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    Temp = vcgencmd.measure_temp()
     #
     cmd = "free -m | awk 'NR==2{printf \"Mem: %.2f%%\", $3*100/$2 }'"
     MemUsage = subprocess.check_output(cmd, shell=True).decode("utf-8")
@@ -108,7 +107,7 @@ while True:
     # Text IP address
     draw.text((x, top), "pi@" + str(IP), font=font, fill=255)
     # Text Temperature CPU
-    draw.text((x+92, top+12), str(Temp), font=font1, fill=255)
+    draw.text((x+92, top+12), str(Temp) + "°", font=font1, fill=255)
     # Text CPU
     draw.text((x, top+9), str(CPU), font=font, fill=255)
     # Text HDD used/total
