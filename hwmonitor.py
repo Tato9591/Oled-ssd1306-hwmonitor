@@ -77,19 +77,32 @@ x = 0
 
 # Load default font.
 font = ImageFont.load_default()
-
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
 # Some other nice Icon to : https://fontawesome.com/
 font_icon = ImageFont.truetype('fa-solid-900.ttf', 18)
 font_icon2 = ImageFont.truetype('fa-solid-900.ttf', 20)
-font_icon3 = ImageFont.truetype('fa-brands-400.ttf', 20)
+font_icon3 = ImageFont.truetype('fa-brands-400.ttf', 26)
 #font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
 while True:
+    
     # Draw a black filled box to clear the image.
     draw.rectangle((0,0,width,height), outline=0, fill=0)
+
+    # Controllo funzionamento ventola
+    Temp = get_temp()
+    if Temp >= 70: # Probabilmente la ventola è fuori uso.
+	draw.text((x, top+6), "Shutdown", font=font1, fill=255)
+	draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
+	# Icon RPi (63419)
+	draw.text((x+85, top+8), chr(63419), font=font_icon3, fill=255)
+        # Display image
+        disp.image(image)
+        disp.show()
+        time.sleep(3)
+	os.system("sudo shutdown -h now")
 
     # https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
 
@@ -123,8 +136,8 @@ while True:
         # Icon FAN (63587) ignition confirmation
         draw.text((x+71, top+13), chr(63587), font=font_icon, fill=255)
     if GPIO.input(14) == False: # pin state control = OFF
-        # Icon Temp (62153) temperature state is OK
-        draw.text((x+79, top+13), chr(62153), font=font_icon2, fill=255)
+        # Icon Temp (62154) temperature state is OK
+        draw.text((x+79, top+13), chr(62154), font=font_icon2, fill=255)
 
     # Display image
     disp.image(image)
