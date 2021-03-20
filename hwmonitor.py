@@ -97,7 +97,7 @@ while True:
 
     # Controllo funzionamento ventola
     Temp = get_temp()
-    if Temp >= 37: # Probabilmente la ventola è fuori uso.
+    if Temp >= 70: # Probabilmente la ventola è fuori uso.
         draw.text((x, top+6), "Shutdown", font=font1, fill=255)
         draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
 	# Icon RPi (63419)
