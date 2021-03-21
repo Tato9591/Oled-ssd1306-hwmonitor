@@ -18,6 +18,10 @@ import adafruit_ssd1306
 
 vcgm = Vcgencmd()
 
+def get_temp():
+    temp = vcgm.measure_temp()
+    return(temp)
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
