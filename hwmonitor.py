@@ -138,7 +138,7 @@ while True:
     # Icon
     if GPIO.input(14) == True: # pin state control = ON
         # Icon FAN (63587) ignition confirmation
-        draw.text((x+75, top+13), chr(63587), font=font_icon, fill=255)
+        draw.text((x+76, top+13), chr(63587), font=font_icon, fill=255)
     if GPIO.input(14) == False: # pin state control = OFF
         # Icon Temp (62154) temperature state is OK
         draw.text((x+85, top+13), chr(62154), font=font_icon2, fill=255)
