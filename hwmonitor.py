@@ -127,7 +127,7 @@ while True:
 
     # Write four lines of text
     # Text IP address
-    draw.text((x+25, top), str(IP), font=font, fill=255)
+    draw.text((x+30, top), str(IP), font=font, fill=255)
     # Text Temperature CPU
     draw.text((x+98, top+13), str(Temp) + "°", font=font1, fill=255)
     # Text CPU
