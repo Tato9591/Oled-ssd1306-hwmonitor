@@ -18,6 +18,10 @@ import adafruit_ssd1306
 
 vcgm = Vcgencmd()
 
+def get_temp:
+    temp = vcgm.measure_temp()
+    return(temp)
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -113,7 +117,7 @@ while True:
     cmd = "top -bn1 | grep load | awk '{printf \"CPU: %.2f\", $(NF-2)}'"
     CPU = subprocess.check_output(cmd, shell=True).decode("utf-8")
     #
-    Temp = vcgm.measure_temp()
+    Temp = get_temp()
     #
     cmd = "free -m | awk 'NR==2{printf \"Mem: %.2f%%\", $3*100/$2 }'"
     MemUsage = subprocess.check_output(cmd, shell=True).decode("utf-8")
