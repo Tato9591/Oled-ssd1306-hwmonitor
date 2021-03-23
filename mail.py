@@ -31,7 +31,7 @@ def send_email():
 
 #per utilizzo in un altro file .py
 #
-#from mail import send_mail
+#from mail import send_email
 #import time
 #    
 #while True:
