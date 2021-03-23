@@ -7,8 +7,7 @@ import time
 #l'accesso, è necessario impostare "Accesso meno sicuro alle app"             |
 #nell'account Google. ‎‎Se la verifica in due passaggi è in corso, non possiamo |
 #utilizzare l'accesso meno sicuro.‎                                            |
-#                                                                             |
-‎#Per completare questa configurazione, vai alla console di amministrazione    |
+#Per completare questa configurazione, vai alla console di amministrazione    |
 #di Google e cerca la configurazione meno sicura dell'app.‎                    |
 #-----------------------------------------------------------------------------#
 
