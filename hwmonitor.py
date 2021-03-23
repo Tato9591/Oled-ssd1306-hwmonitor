@@ -7,7 +7,9 @@
 # not support PIL/pillow (python imaging library)!
 from vcgencmd import Vcgencmd
 #Per documentazione vedi https://pypi.org/project/vcgencmd/
+from mail import send_email # inserire i dati in mail.py
 import time
+import os
 import subprocess
 import RPi.GPIO as GPIO
 import board
@@ -78,6 +80,7 @@ bottom = height - padding
 # Move left to right keeping track of the current x position for drawing shapes.
 x = 0
 
+posta = 0
 
 # Load default font.
 font = ImageFont.load_default()
@@ -91,6 +94,8 @@ font_icon3 = ImageFont.truetype('fa-brands-400.ttf', 26)
 font_icon4 = ImageFont.truetype('fa-solid-900.ttf', 8)
 #font_text_small = ImageFont.truetype('Montserrat-Medium.ttf', 8)
 
+posta = 0
+
 while True:
     
     # Draw a black filled box to clear the image.
@@ -98,16 +103,21 @@ while True:
 
     # Controllo funzionamento ventola
     Temp = get_temp()
-    if Temp >= 70: # Probabilmente la ventola è fuori uso.
+    if Temp >= 70: # Probabilmente la ventola è fuori uso mi spengo.
         draw.text((x, top+6), "Shutdown", font=font1, fill=255)
         draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
-	# Icon RPi (63419)
+	# Icon brand RPi (63419)
         draw.text((x+85, top+8), chr(63419), font=font_icon3, fill=255)
         # Display image
         disp.image(image)
         disp.show()
         time.sleep(3)
         os.system("sudo shutdown -h now")
+        break
+    if Temp >= 50 and posta <= 0:
+        posta += 1
+        send_email()
+        time.sleep(0.5)
 
     # https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
 
@@ -139,6 +149,9 @@ while True:
     # Icon
     # Icon Wi-Fi (61931)
     draw.text((x+15, top+2), chr(61931), font=font_icon4, fill=255)
+    if posta == 1:
+        # Icon Mail (61664) inviato email di avviso poi mi spengo.
+        draw.text((x, top+2), chr(61664), font=font_icon4, fill=255)
     if GPIO.input(14) == True: # pin state control = ON
         # Icon FAN (63587) ignition confirmation
         draw.text((x+76, top+13), chr(63587), font=font_icon, fill=255)
