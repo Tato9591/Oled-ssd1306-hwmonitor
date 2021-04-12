@@ -157,9 +157,9 @@ while True:
         draw.text((x+76, top+13), chr(63587), font=font_icon, fill=255)
     if GPIO.input(14) == False: # pin state control = OFF
         # Icon Temp (62154) temperature state is OK
-        if Temp >= 65:
+        if Temp > 60:
             draw.text((x+85, top+13), chr(62152), font=font_icon2, fill=255)
-        if Temp > 40:
+        if Temp > 40 and Temp <= 60:
             draw.text((x+85, top+13), chr(62153), font=font_icon2, fill=255)
         if Temp <= 40:
             draw.text((x+85, top+13), chr(62154), font=font_icon2, fill=255)
