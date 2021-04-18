@@ -6,4 +6,8 @@ aggiunto spegnimento automatico se la temperatura raggiunge i 70°C, ( esempio: 
 Inserire in mail.py i parametri per inviare e ricevere la email.
 Calibrato per oled 0,91 128x32 i2c.
 
+
+h![RPi4-NAS_00](https://www.schenardi.it/public/RPi4-NAS/images/RPi4-NAS_00.jpg)
+
+
 Vedi README.pdf
