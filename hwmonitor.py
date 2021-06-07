@@ -186,7 +186,7 @@ while True:
         time.sleep(3)
         os.system("sudo shutdown -h now")
         break
-    if Temp >= 50 and posta == 0: # primo avviso con mail.
+    if Temp >= 55 and posta == 0: # primo avviso con mail.
         posta += 1
         send_email()
         time.sleep(0.5)
