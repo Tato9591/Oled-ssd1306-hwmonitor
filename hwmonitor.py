@@ -150,9 +150,9 @@ while True:
             f.write(Day) # scrittura prima volta oltre le ore 00:00
             f.close()                       
             time.sleep(0.5)
-            Cont += 1
+            Cont = 1
         if Ora == inizioDay and Cont == 0:
-            Cont += 1
+            Cont = 1
             f.write(Day)
             f.close()
             time.sleep(0.5)
@@ -244,13 +244,13 @@ while True:
             draw.text((x+85, top+13), chr(62153), font=font_icon2, fill=255)
         if Temp <= 40:
             draw.text((x+85, top+13), chr(62154), font=font_icon2, fill=255)
-        # visualizza conteggio accensione giornaliero del FAN.
-        if ContFAN < 10:
-            draw.text((x+98,top+24), "  00"+str(ContFAN), font=font, fill=255)
-        if ContFAN < 100:
-            draw.text((x+98,top+24), "  0"+str(ContFAN), font=font, fill=255)
-        if ContFAN >= 100:
-            draw.text((x+98,top+24), "  "+str(ContFAN), font=font, fill=255) 
+    # visualizza conteggio accensione giornaliero del FAN.
+    if ContFAN < 10:
+        draw.text((x+98,top+24), "  00"+str(ContFAN), font=font, fill=255)
+    if ContFAN < 100:
+        draw.text((x+98,top+24), "  0"+str(ContFAN), font=font, fill=255)
+    if ContFAN >= 100:
+        draw.text((x+98,top+24), "  "+str(ContFAN), font=font, fill=255) 
         
 
     # Display image
