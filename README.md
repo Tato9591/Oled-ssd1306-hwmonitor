@@ -1,6 +1,6 @@
 # Oled-ssd1306-hwmonitor
 Per Raspberry Pi con GPIO da 40 pin dal PiZero al Pi4.
-Invio mail di avviso raggiunto i 55°C; 
+Invio mail di avviso raggiunto i 60°C; 
 aggiunto spegnimento automatico se la temperatura raggiunge i 70°C, ( esempio: rottura della ventola).
 Aggiornato sistema automatico ripristino dati in caso di reboot per calo tensione.
 
