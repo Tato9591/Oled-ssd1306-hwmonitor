@@ -9,6 +9,7 @@ from vcgencmd import Vcgencmd
 #Per documentazione vedi https://pypi.org/project/vcgencmd/
 from pathlib import Path
 from mail import send_email # inserire i dati in mail.py
+from datetime import datetime
 import time
 import os
 import subprocess
@@ -92,6 +93,7 @@ font = ImageFont.load_default()
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
+font2 = ImageFont.truetype('Montserrat-Light.ttf', 14)
 # Some other nice Icon to : https://fontawesome.com/
 font_icon = ImageFont.truetype('fa-solid-900.ttf', 18)
 font_icon2 = ImageFont.truetype('fa-solid-900.ttf', 20)
@@ -134,12 +136,15 @@ else:
         f.write(str(ContFAN)) # scrivo il valore
         f.close()
         time.sleep(0.5)
-
+i=0
 while True:
-    
+    i+=1
     # Draw a black filled box to clear the image.
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    
+    #
+    now = datetime.now()
+    GOW = now.strftime("%A - %H : %M")
+    DMY = now.strftime("%d %b %Y wk.%W")
     # registrazione su file FAN.txt delle attivazioni della ventola at Day
     Ora = get_ora()
     Day = time.ctime()
@@ -257,3 +262,14 @@ while True:
     disp.image(image)
     disp.show()
     time.sleep(0.1)
+    if i==15:
+        i=0
+        # visualizza seconda schermata con calendario e orario
+        draw.rectangle((0,0,width,height),outline=0,fill=0)
+        #
+        draw.text((x,top), str(GOW), font=font2, fill=255)
+        draw.text((x,top+18), str(DMY), font=font2, fill=255)
+        # Display image
+        disp.image(image)
+        disp.show()
+        time.sleep(1.5)
