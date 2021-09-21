@@ -93,7 +93,7 @@ font = ImageFont.load_default()
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font1 = ImageFont.truetype('Montserrat-Light.ttf', 12)
-font2 = ImageFont.truetype('Montserrat-Light.ttf', 14)
+font2 = ImageFont.truetype('Montserrat-Light.ttf', 13)
 # Some other nice Icon to : https://fontawesome.com/
 font_icon = ImageFont.truetype('fa-solid-900.ttf', 18)
 font_icon2 = ImageFont.truetype('fa-solid-900.ttf', 20)
@@ -143,8 +143,8 @@ while True:
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #
     now = datetime.now()
-    GOW = now.strftime("%A - %H : %M")
-    DMY = now.strftime("%d %b %Y wk.%W")
+    GOW = now.strftime("%A - %H:%M")
+    DMY = now.strftime("%d %b %Y - wk.%W")
     # registrazione su file FAN.txt delle attivazioni della ventola at Day
     Ora = get_ora()
     Day = time.ctime()
