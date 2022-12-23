@@ -9,7 +9,7 @@ from vcgencmd import Vcgencmd
 #Per documentazione vedi https://pypi.org/project/vcgencmd/
 from pathlib import Path
 from mail import send_email # inserire i dati in mail.py
-import datetime from dt
+from datetime import datetime
 import locale
 import time
 import os
@@ -143,7 +143,7 @@ while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #
-    now = dt.date.today()
+    now = datetime.today()
     Grn = now.strftime("%A")
     OMn = datetime.now().strftime("%H:%M")
     DMY = now.strftime("%d %b %Y")
@@ -271,9 +271,9 @@ while True:
         draw.rectangle((0,0,width,height),outline=0,fill=0)
         #
         draw.text((x,top), str(Grn), font=font2, fill=255)
-	draw.text((x+89,top), str(OMn), font=font2, fill=255)
+        draw.text((x+89,top), str(OMn), font=font2, fill=255)
         draw.text((x,top+18), str(DMY), font=font2, fill=255)
-	draw.text((x+87,top+18), str(Wks), font=font2, fill=255)
+        draw.text((x+87,top+18), str(Wks), font=font2, fill=255)
         # Display image
         disp.image(image)
         disp.show()
