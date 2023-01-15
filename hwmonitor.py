@@ -57,6 +57,8 @@ GPIO.setwarnings(False)
 #|-----------------------------------------------------------------------------|
 # Fan Set the behaviour of a GPIO connected fan
 GPIO.setup(14, GPIO.OUT)
+GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(15, GPIO.OUT)
 # Create the I2C interface.
 i2c = busio.I2C(SCL, SDA)
 
@@ -183,7 +185,7 @@ while True:
             
     # Controllo integrità della ventola.
     Temp = get_temp()
-    if Temp >= 70: # Probabilmente la ventola è fuori uso mi spengo.
+    if Temp >= 70 or GPIO.input(4) == False: # Probabilmente ai premuto il pulsante o la ventola è fuori uso mi spengo.
         draw.text((x, top+6), "Shutdown", font=font1, fill=255)
         draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
 	# Icon brand RPi (63419)
@@ -191,7 +193,7 @@ while True:
         # Display image
         disp.image(image)
         disp.show()
-        time.sleep(3)
+        time.sleep(5)
         os.system("sudo shutdown -h now")
         break
     if Temp >= 60 and posta == 0: # primo avviso con mail.
