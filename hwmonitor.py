@@ -19,7 +19,7 @@ from board import SCL, SDA
 import busio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
-
+import locale
 vcgm = Vcgencmd()
 # impostare la scritta dei giorni settimana e mesi, in italiano.
 locale.setlocale(locale.LC_ALL, 'it_IT.utf-8')
