@@ -13,6 +13,7 @@ from datetime import datetime
 import time
 import os
 import subprocess
+from gpiozero import LED
 import RPi.GPIO as GPIO
 import board
 from board import SCL, SDA
@@ -35,7 +36,7 @@ def get_ora():
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-
+led = LED(15)
 # use Pi header pin numbering convention
 #|-----------Attivazione controllo automatico temparatura con ventola----------|
 #|-----------------------------------------------------------------------------|
@@ -57,6 +58,10 @@ GPIO.setwarnings(False)
 #|-----------------------------------------------------------------------------|
 # Fan Set the behaviour of a GPIO connected fan
 GPIO.setup(14, GPIO.OUT)
+# pulsante di spegnimento
+GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+# uscita led.
+GPIO.setup(15, GPIO.out)
 # Create the I2C interface.
 i2c = busio.I2C(SCL, SDA)
 
@@ -181,15 +186,16 @@ while True:
             
     # Controllo integrità della ventola.
     Temp = get_temp()
-    if Temp >= 80: # Probabilmente la ventola è fuori uso mi spengo.
-        draw.text((x, top+6), "Shutdown", font=font1, fill=255)
+    if Temp >= 80 or GPIO.input(4) == False: # Probabilmente la ventola è fuori uso mi spengo.
+        led.blink()
+	draw.text((x, top+6), "Shutdown", font=font1, fill=255)
         draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
 	# Icon brand RPi (63419)
-        draw.text((x+85, top+8), chr(63419), font=font_icon3, fill=255)
+        draw.text((x+95, top+8), chr(63419), font=font_icon3, fill=255)
         # Display image
         disp.image(image)
         disp.show()
-        time.sleep(3)
+        time.sleep(5)
         os.system("sudo shutdown -h now")
         break
     if Temp >= 70 and posta == 0: # primo avviso con mail.
