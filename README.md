@@ -6,7 +6,7 @@ Aggiornato sistema automatico ripristino dati in caso di reboot per calo tension
 Aggiunto seconda schermata per visualizzare calendario e ora corrente.
 Inserire in mail.py i parametri per inviare e ricevere la email.
 Calibrato per oled 0,91 128x32 i2c.
-aggiunto spegnimento con pulsante e led per controllo.
+Aggiunto spegnimento con pulsante e led per controllo.
 
 
 ![RPi4-NAS_00](https://www.schenardi.it/public/RPi4-NAS/images/RPi4-NAS_00.jpg)
