@@ -189,7 +189,7 @@ while True:
     if Temp >= 80 or GPIO.input(4) == False: # Probabilmente la ventola è fuori uso o hai premuto il pulsante, mi spengo.
         led.blink()
         draw.text((x, top+6), "Shutdown", font=font1, fill=255)
-        draw.text((x, top+20), "RPI4-NAS", font=font1, fill=255)
+        draw.text((x, top+20), "RPI4-NAS-HAS", font=font1, fill=255)
 	# Icon brand RPi (63419)
         draw.text((x+95, top+8), chr(63419), font=font_icon3, fill=255)
         # Display image
