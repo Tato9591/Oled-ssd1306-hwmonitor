@@ -150,7 +150,7 @@ while True:
     #
     now = datetime.now()
     GOW = now.strftime("%A - wk.%W")
-    DMY = now.strftime("%d %b %Y  %H : &M")
+    DMY = now.strftime("%d %m %Y  %H : &M")
     # registrazione su file FAN.txt delle attivazioni della ventola at Day
     Ora = get_ora()
     Day = time.ctime()
