@@ -149,8 +149,8 @@ while True:
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #
     now = datetime.now()
-    GOW = now.strftime("%A - %H : %M")
-    DMY = now.strftime("%d %b %Y wk.%W")
+    GOW = now.strftime("%A - wk.%W")
+    DMY = now.strftime("%d %b %Y - %H : &M")
     # registrazione su file FAN.txt delle attivazioni della ventola at Day
     Ora = get_ora()
     Day = time.ctime()
