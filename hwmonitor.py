@@ -123,8 +123,7 @@ if Path('ENEL.txt').is_file(): # controllo esistenza file
     time.sleep(0.5)
 else:
     writepath = 'ENEL.txt' # se non esiste lo creo
-    mode = 'a' if os.path.exists(writepath) else 'w+'
-    with open(writepath, mode) as f:
+    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
         f.write(str(Cont)) # scrivo valore
         f.close()
         time.sleep(0.5)
@@ -137,8 +136,7 @@ if Path('FanBkp.txt').is_file(): # controllo esistenza file
     time.sleep(0.5)
 else:
     writepath = 'FanBkp.txt' # se non esiste lo creo
-    mode = 'a' if os.path.exists(writepath) else 'w+'
-    with open(writepath, mode) as f:
+    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
         f.write(str(ContFAN)) # scrivo il valore
         f.close()
         time.sleep(0.5)
@@ -150,13 +148,12 @@ while True:
     #
     now = datetime.now()
     GOW = now.strftime("%A - wk.%W")
-    DMY = now.strftime("%d %m %Y  %H : %M")
+    DMY = now.strftime("%d/%m/%Y  %H:%M")
     # registrazione su file FAN.txt delle attivazioni della ventola at Day
     Ora = get_ora()
     Day = time.ctime()
     writepath = 'FAN.txt'
-    mode = 'a' if os.path.exists(writepath) else 'w'
-    with open(writepath, mode) as f:
+    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
         if os.stat("FAN.txt").st_size == 0: # file vuoto
             f.write(Day) # scrittura prima volta oltre le ore 00:00
             f.close()                       
