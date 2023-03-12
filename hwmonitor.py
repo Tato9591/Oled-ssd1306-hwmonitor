@@ -123,7 +123,8 @@ if Path('ENEL.txt').is_file(): # controllo esistenza file
     time.sleep(0.5)
 else:
     writepath = 'ENEL.txt' # se non esiste lo creo
-    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
+    mode = 'a' if os.path.exists(writepath) else 'w'
+    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), mode) as f:
         f.write(str(Cont)) # scrivo valore
         f.close()
         time.sleep(0.5)
@@ -136,7 +137,8 @@ if Path('FanBkp.txt').is_file(): # controllo esistenza file
     time.sleep(0.5)
 else:
     writepath = 'FanBkp.txt' # se non esiste lo creo
-    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
+    mode = 'a' if os.path.exists(writepath) else 'w'
+    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), mode) as f:
         f.write(str(ContFAN)) # scrivo il valore
         f.close()
         time.sleep(0.5)
@@ -153,7 +155,8 @@ while True:
     Ora = get_ora()
     Day = time.ctime()
     writepath = 'FAN.txt'
-    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
+    mode = 'a' if os.path.exists(writepath) else 'w'
+    with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), mode) as f:
         if os.stat("FAN.txt").st_size == 0: # file vuoto
             f.write(Day) # scrittura prima volta oltre le ore 00:00
             f.close()                       
