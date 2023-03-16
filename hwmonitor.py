@@ -123,7 +123,7 @@ if Path('ENEL.txt').is_file(): # controllo esistenza file
     time.sleep(0.5)
 else:
     writepath = 'ENEL.txt' # se non esiste lo creo
-    mode = 'a' if os.path.exists(writepath) else 'w'
+    mode = 'a' if os.path.exists(writepath) else 'w+'
     with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), mode) as f:
         f.write(str(Cont)) # scrivo valore
         f.close()
@@ -137,7 +137,7 @@ if Path('FanBkp.txt').is_file(): # controllo esistenza file
     time.sleep(0.5)
 else:
     writepath = 'FanBkp.txt' # se non esiste lo creo
-    mode = 'a' if os.path.exists(writepath) else 'w'
+    mode = 'a' if os.path.exists(writepath) else 'w+'
     with open(os.open(writepath, os.O_CREAT | os.O_WRONLY, 0o777), mode) as f:
         f.write(str(ContFAN)) # scrivo il valore
         f.close()
